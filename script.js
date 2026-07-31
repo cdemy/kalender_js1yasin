@@ -50,3 +50,4 @@ wochentagElemente.forEach(function (element) {
 // Kontrolle in der Browser-Konsole
 console.log("Datum:", datumText);
 console.log("Wochentag:", wochentagText);
+

@@ -8,6 +8,22 @@ const tag = heute.getDate();
 const monatIndex = heute.getMonth();
 const jahr = heute.getFullYear();
 
+// --------------------------------------------------
+// 1.1 Feiertage API
+function formatiereDatumISO(datum) {
+  const jahr = datum.getFullYear();
+
+  const monat = String(
+    datum.getMonth() + 1
+  ).padStart(2, "0");
+
+  const tag = String(
+    datum.getDate()
+  ).padStart(2, "0");
+
+  return `${jahr}-${monat}-${tag}`;
+}
+//---------------------------------------------------
 
 // --------------------------------------------------
 // 2. Hintergrund über JavaScript setzen
@@ -136,15 +152,81 @@ hauptUeberschrift.textContent =
 monatsUeberschrift.textContent =
   `${monatsname} ${jahr}`;
 
-tagesbeschreibung.textContent =
-  `Der ${datumText} ist ein ${wochentagText} und zwar der ` +
-  `${reihenfolgeText} ${wochentagText} im Monat ${monatsname} ` +
-  `des Jahres ${jahr}. Es handelt sich um den ${tagDesJahres}. ` +
-  `Tag des Jahres. Bis zum Jahresende verbleiben noch ` +
-  `${verbleibendeTage} Tage. Der Monat ${monatsname} hat ` +
-  `insgesamt ${tageImMonat} Tage. Eine automatische ` +
-  `Feiertagsprüfung ist in dieser Version noch nicht integriert.`;
+// ---------------------------------
+// function feiertage
 
+  function zeigeTagesbeschreibung(feiertagsText) {
+  tagesbeschreibung.textContent =
+    `Der ${datumText} ist ein ${wochentagText} und zwar der ` +
+    `${reihenfolgeText} ${wochentagText} im Monat ${monatsname} ` +
+    `des Jahres ${jahr}. Es handelt sich um den ${tagDesJahres}. ` +
+    `Tag des Jahres. Bis zum Jahresende verbleiben noch ` +
+    `${verbleibendeTage} Tage. Der Monat ${monatsname} hat ` +
+    `insgesamt ${tageImMonat} Tage. ${feiertagsText}`;
+}
+
+async function pruefeFeiertag() {
+  const bundesland = "HE";
+  const heutigesDatumISO = formatiereDatumISO(heute);
+
+  const apiUrl =
+    `https://feiertage-api.de/api/?jahr=${jahr}` +
+    `&nur_land=${bundesland}`;
+
+  try {
+    const antwort = await fetch(apiUrl);
+
+    if (!antwort.ok) {
+      throw new Error(
+        `HTTP-Fehler: ${antwort.status}`
+      );
+    }
+
+    const feiertage = await antwort.json();
+
+    const gefundenerFeiertag =
+      Object.entries(feiertage).find(
+        ([feiertagsName, feiertagsDaten]) => {
+          return (
+            feiertagsDaten.datum ===
+            heutigesDatumISO
+          );
+        }
+      );
+
+    if (gefundenerFeiertag) {
+      const [feiertagsName] =
+        gefundenerFeiertag;
+
+      return (
+        `Heute ist in Hessen der gesetzliche Feiertag ` +
+        `„${feiertagsName}“.`
+      );
+    }
+
+    return (
+      "Heute ist in Hessen kein gesetzlicher Feiertag."
+    );
+  } catch (fehler) {
+    console.error(
+      "Feiertagsprüfung fehlgeschlagen:",
+      fehler
+    );
+
+    return (
+      "Die automatische Feiertagsprüfung konnte " +
+      "momentan nicht geladen werden."
+    );
+  }
+}
+
+  zeigeTagesbeschreibung(
+    "Die Feiertagsprüfung wird geladen."
+);
+
+  pruefeFeiertag().then((feiertagsText) => {
+    zeigeTagesbeschreibung(feiertagsText);
+});
 
 // --------------------------------------------------
 // 10. Kalender des aktuellen Monats erzeugen

@@ -183,7 +183,7 @@ async function pruefeFeiertag() {
     }
 
     const feiertage = await antwort.json();
-
+          markiereFeiertageImKalender(feiertage);
     const gefundenerFeiertag =
       Object.entries(feiertage).find(
         ([feiertagsName, feiertagsDaten]) => {
@@ -280,6 +280,11 @@ for (
   const datumDesFeldes =
     new Date(jahr, monatIndex, kalenderTag);
 
+  const isoDatumDesFeldes =
+  formatiereDatumISO(datumDesFeldes);
+
+  feld.dataset.datum = isoDatumDesFeldes;
+
   const wochentagDesFeldes =
     datumDesFeldes.getDay();
 
@@ -322,6 +327,21 @@ if (zeile.children.length > 0) {
   }
 
   kalenderInhalt.appendChild(zeile);
+}
+
+function markiereFeiertageImKalender(feiertage) {
+  Object.entries(feiertage).forEach(
+    ([feiertagsName, feiertagsDaten]) => {
+      const feiertagsFeld = document.querySelector(
+        `[data-datum="${feiertagsDaten.datum}"]`
+      );
+
+      if (feiertagsFeld) {
+        feiertagsFeld.classList.add("feiertag");
+        feiertagsFeld.title = feiertagsName;
+      }
+    }
+  );
 }
 
 

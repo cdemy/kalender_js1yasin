@@ -1,71 +1,270 @@
+:root {
+  --seiten-hintergrund:
+    url("assets/background-kalender.png");
 
+  --textfarbe: #242424;
+  --blau: #2563eb;
+  --rot: #dc2626;
+  --kartenfarbe: rgba(255, 255, 255, 0.9);
+}
 
+* {
+  box-sizing: border-box;
+}
 
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-    margin: 0;
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    background-color: #f7f7f5;
-    color: #333333; 
+  min-height: 100vh;
+  margin: 0;
+
+  font-family:
+    Inter,
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  color: var(--textfarbe);
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.78)
+    ),
+    var(--seiten-hintergrund);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
- h1 {
-    color: black;
-    font-weight: 800;
+
+a {
+  color: #164ed8;
 }
- h2 {
-    color: gray;
-     font-weight: 800;
-    }
+
+.seite {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0 72px;
+}
+
+
+/* Einleitung */
+
+.einleitung {
+  max-width: 950px;
+  padding: 28px 32px;
+
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+
+  box-shadow:
+    0 18px 50px rgba(24, 35, 55, 0.08);
+
+  backdrop-filter: blur(8px);
+}
+
+.kategorie {
+  margin: 0 0 8px;
+
+  color: #627084;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0 0 20px;
+
+  color: #101010;
+
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.05;
+}
+
+.einleitung p:last-child {
+  margin-bottom: 0;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+
+/* Kalenderbereich */
+
+.kalender-bereich {
+  display: grid;
+  place-items: center;
+
+  margin: 55px 0;
+}
+
 .tabelle {
-    width: fit-content;
-    margin: 70px auto;
-    padding: 24px;
-    background-color: white;
-    border: 1px solid #dddddd;
-    border-radius: 20px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  width: min(100%, 460px);
+  padding: 28px;
+
+  background: var(--kartenfarbe);
+
+  border: 1px solid rgba(174, 180, 190, 0.45);
+  border-radius: 24px;
+
+  box-shadow:
+    0 25px 70px rgba(25, 35, 50, 0.17);
+
+  backdrop-filter: blur(16px);
 }
+
+.kalender-kopf {
+  margin-bottom: 18px;
+}
+
+.website-hinweis {
+  margin: 0 0 8px;
+}
+
+#monats-ueberschrift {
+  margin: 0;
+
+  color: #1a1a1a;
+  font-size: 26px;
+}
+
 table {
-    border-collapse: seperate;
-    border-spacing: 6px;
+  width: 100%;
+
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 7px;
 }
 
-th, 
+th,
 td {
-    width: 42px;
-    min-width: 42px;
-    height: 42px;
-    text-align: center;
-    padding: 0;
-    box-sizing: border-box;
-    border: 1px solide #e2e2e2;
-    border-radius: 8px;
+  height: 44px;
+  padding: 0;
+
+  text-align: center;
+  vertical-align: middle;
+
+  border-radius: 10px;
 }
-td {
-    background-color: #fafafa;
-}
+
 th {
-    background-color: #f1f1f1;
-}
-/* Samstag: sechste Spalte */
-thead th:nth-child(6),
-tbody td:nth-child(6) {
-    color: #2563eb;
-}
-thead th:nth-child(7),
-tbody td:nth-child(7) {
-    color: #dc2626;}
+  color: #1d1d1d;
+  background: rgba(237, 237, 237, 0.9);
 
- 
-.today {
-    background-color: #1a1a1a;
-    color: white;
-    border-color: #1a1a1a;
-    font-weight: 700;
+  font-weight: 800;
 }
-td:not(.today):hover {
-    background-color: #eeeeee;
-    border-color: #bdbdbd;
-    transform: translateY(-2px);
-    cursor: pointer; 
+
+td {
+  color: #202020;
+  background: rgba(248, 248, 248, 0.88);
+
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease;
+}
+
+td:not(.leer):not(.heute):hover {
+  background: #e9e9e9;
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.samstag {
+  color: var(--blau);
+}
+
+.sonntag {
+  color: var(--rot);
+}
+
+td.heute {
+  color: white;
+  background: #161616;
+
+  border: 1px solid #161616;
+  font-weight: 800;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+td.leer {
+  background: rgba(247, 247, 247, 0.45);
+}
+
+
+/* Historische Ereignisse */
+
+.historie {
+  max-width: 950px;
+  padding: 30px 32px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+
+  box-shadow:
+    0 18px 50px rgba(24, 35, 55, 0.08);
+
+  backdrop-filter: blur(8px);
+}
+
+.historie h2 {
+  margin: 0 0 20px;
+
+  color: #303640;
+  font-size: clamp(25px, 4vw, 36px);
+}
+
+.historie ul {
+  margin-bottom: 0;
+  padding-left: 24px;
+}
+
+.historie li {
+  margin-bottom: 9px;
+  line-height: 1.55;
+}
+
+
+/* Smartphone */
+
+@media (max-width: 650px) {
+  .seite {
+    width: min(100% - 20px, 1120px);
+    padding-top: 18px;
+  }
+
+  .einleitung,
+  .historie {
+    padding: 22px 20px;
+    border-radius: 18px;
+  }
+
+  .tabelle {
+    padding: 18px 12px;
+    border-radius: 18px;
+  }
+
+  table {
+    border-spacing: 4px;
+  }
+
+  th,
+  td {
+    height: 39px;
+    border-radius: 8px;
+  }
+
+  .kalender-bereich {
+    margin: 35px 0;
+  }
 }

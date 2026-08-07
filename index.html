@@ -1,88 +1,113 @@
 <!DOCTYPE html>
-  <html> 
-    <head>
-      <meta charset="utf-8"> 
-      <link rel="stylesheet" href="style.css">
-      <title>Kalender von Naser Solutions</title>
-    </head>
-    <body>
-      
-      <h1>Kalenderblatt vom 20.07.2026</h1>
-      <p> Der 20. Juli 2026 ist ein Montag und zwar der dritte Montag im Monat Juli des Jahres 2026. Es handelt sich um den 201. Tag des Jahres, was bedeutet,
-         dass es noch 164 Tage bis zum Jahresende sind. Der Monat Juli hat insgesamt 31 Tage. Heute ist kein gesetzlicher Feiertag in Deutschland.</p>
-         <div class="tabelle">
-          <p>Besuch uns auf 
-             <a href="https://www.naser.solutions">naser.solutions</a>!
-          </p>
-      <table>
-        <thead>
-          <tr>
-          <th>Mo</th>
-          <th>Di</th>
-          <th>Mi</th>
-          <th>Do</th>
-          <th>Fr</th>
-          <th>Sa</th>
-          <th>So</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr> 
-            <td> </td>
-            <td> </td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-          </tr>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Kalender von Naser Solutions</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- defer: JavaScript startet erst, wenn das HTML geladen wurde -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <main class="seite">
+
+    <section class="einleitung">
+      <p class="kategorie">Naser Solutions Kalender</p>
+
+      <h1 id="main-headline">
+        Kalenderblatt
+      </h1>
+
+      <!-- Dieser Text wird vollständig mit JavaScript eingesetzt -->
+      <p id="tagesbeschreibung"></p>
+    </section>
+
+    <section class="kalender-bereich">
+      <div class="tabelle">
+
+        <div class="kalender-kopf">
+          <div>
+            <p class="website-hinweis">
+              Besuch uns auf
+              <a
+                href="https://www.naser.solutions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                naser.solutions
+              </a>
+            </p>
+
+            <h2 id="monats-ueberschrift"></h2>
+          </div>
+        </div>
+
+        <table aria-label="Kalender des aktuellen Monats">
+          <thead>
             <tr>
-              <td>6</td>
-              <td>7</td>
-              <td>8</td>
-              <td>9</td>
-              <td>10</td>
-              <td>11</td>
-              <td>12</td>
+              <th>Mo</th>
+              <th>Di</th>
+              <th>Mi</th>
+              <th>Do</th>
+              <th>Fr</th>
+              <th class="samstag">Sa</th>
+              <th class="sonntag">So</th>
             </tr>
-             <tr>
-              <td>13</td>
-              <td>14</td>
-              <td>15</td>
-              <td>16</td>
-              <td>17</td>
-              <td>18</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td class="today">20</td>
-              <td>21</td>
-              <td>22</td>
-              <td>23</td>
-              <td>24</td>
-              <td>25</td>
-              <td>26</td>
-            </tr>
-            <tr>
-              <td>27</td>
-              <td>28</td>
-              <td>29</td>
-              <td>30</td>
-              <td>31</td>
-              <td>  </td>
-              <td>  </td>
-            </tr>
-        </tbody>
-      </table>
-    </div>
+          </thead>
+
+          <!-- Die Kalendertage erzeugt JavaScript -->
+          <tbody id="kalender-inhalt"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="historie">
+      <p class="kategorie">Beispieldaten</p>
+
       <h2>Historische Ereignisse am 13. Juli</h2>
+
       <ul>
-        <li>1966: In den USA wird das Miranda-Recht eingeführt, das besagt, dass Verdächtige bei ihrer Festnahme über ihre Rechte informiert werden müssen</li>
-        <li>1983: Der erste Teil der "Star Wars"- Triologie, "Die Rückkehr der Jedi-Ritter", wird in den Kinos veröffentlicht.</li>
-        <li>1997: Der erste Harry-Potter-Roman, "Harry Potter und der Stein der Weisen", wird in Großbritannien veröffentlicht.</li>
-        <li>2000: Der Euro wird in 11 europäischen Ländern als Bargeld eingeführt</li>
-        <li>2013: Edward Snowden enthüllt geheime Informationen über die Überwachungsprogramme der NSA.</li>
+        <li>
+          <strong>1966:</strong>
+          In den USA wird das Miranda-Recht eingeführt, das besagt,
+          dass Verdächtige bei ihrer Festnahme über ihre Rechte
+          informiert werden müssen.
+        </li>
+
+        <li>
+          <strong>1983:</strong>
+          Der erste Teil der „Star Wars“-Trilogie,
+          „Die Rückkehr der Jedi-Ritter“, wird in den Kinos veröffentlicht.
+        </li>
+
+        <li>
+          <strong>1997:</strong>
+          Der erste Harry-Potter-Roman
+          „Harry Potter und der Stein der Weisen“
+          wird in Großbritannien veröffentlicht.
+        </li>
+
+        <li>
+          <strong>2000:</strong>
+          Der Euro wird in elf europäischen Ländern als Bargeld eingeführt.
+        </li>
+
+        <li>
+          <strong>2013:</strong>
+          Edward Snowden enthüllt Informationen über
+          Überwachungsprogramme der NSA.
+        </li>
       </ul>
-    </body>
-    
-  </html>
+    </section>
+
+  </main>
+</body>
+</html>

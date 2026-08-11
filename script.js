@@ -108,7 +108,12 @@ const jahresanfangUTC = Date.UTC(jahr, 0, 0);
 const tagDesJahres = Math.floor(
   (heuteUTC - jahresanfangUTC) / 86400000
 );
-
+// daysInMonths = [ 31, 28, 31, 30, 31, 30 , ... ];
+// if (((month + 1) % 7) % 2 == 0) {
+//   if (month == 1 && isLeapYear()) { 29 } else if (month == 1) { 28} else { 30 }
+// } else {
+//   31
+// } 
 
 // --------------------------------------------------
 // 7. Anzahl der Tage im Jahr und Resttage berechnen

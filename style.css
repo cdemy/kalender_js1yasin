@@ -1,11 +1,6 @@
 :root {
-  --seiten-hintergrund:
-    url("assets/background-kalender.png");
-
-  --textfarbe: #242424;
-  --blau: #2563eb;
-  --rot: #dc2626;
-  --kartenfarbe: rgba(255, 255, 255, 0.9);
+    --seiten-hintergrund:
+        url("assets/background_kalender_naser.png");
 }
 
 * {
@@ -35,7 +30,34 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+.brand-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
+    margin-bottom: 24px;
+    padding: 14px 18px;
+
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+
+    backdrop-filter: blur(10px);
+}
+
+.brand-logo {
+    display: block;
+    width: 190px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.brand-label {
+    color: #627084;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
 a {
   color: #164ed8;
 }

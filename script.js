@@ -23,7 +23,6 @@ function formatiereDatumISO(datum) {
 
   return `${jahr}-${monat}-${tag}`;
 }
-
 // 1.2 Historical Events API 
 //---------------------------------------------------
 const apiMonat = monatIndex +1;

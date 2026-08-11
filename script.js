@@ -23,8 +23,20 @@ function formatiereDatumISO(datum) {
 
   return `${jahr}-${monat}-${tag}`;
 }
-//---------------------------------------------------
 
+// 1.2 Historical Events API 
+//---------------------------------------------------
+const apiMonat = monatIndex +1;
+const historyUrl = "https://history.muffinlabs.com/date/${apiMonat}/$tag}";
+
+async function ladeHistorischeEreignisse()
+{
+  const antwort = await fetch(historyUrl);
+
+  const daten = await antwort.json();
+
+  console.log(daten);
+}
 // --------------------------------------------------
 // 2. Hintergrund über JavaScript setzen
 // --------------------------------------------------

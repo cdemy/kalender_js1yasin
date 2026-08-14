@@ -25,6 +25,8 @@ function formatiereDatumISO(datum) {
 }
 // 1.2 Historical Events API 
 //---------------------------------------------------
+
+const apiMonat = monatIndex + 1;
 const historyUrl =
     `https://history.muffinlabs.com/date/${apiMonat}/${tag}`;
 
@@ -46,7 +48,7 @@ async function ladeHistorischeEreignisse()
 
 document.documentElement.style.setProperty(
   "--seiten-hintergrund",
-  'url("assets/background-kalender.png")'
+  'url("assets/background_kalender_naser.png")'
 );
 
 

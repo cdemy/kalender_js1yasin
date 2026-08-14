@@ -25,17 +25,21 @@ function formatiereDatumISO(datum) {
 }
 // 1.2 Historical Events API 
 //---------------------------------------------------
-const apiMonat = monatIndex +1;
-const historyUrl = "https://history.muffinlabs.com/date/${apiMonat}/$tag}";
+const historyUrl =
+    `https://history.muffinlabs.com/date/${apiMonat}/${tag}`;
 
 async function ladeHistorischeEreignisse()
 {
-  const antwort = await fetch(historyUrl);
+    // Daten vom API-Endpunkt abrufen
+    const antwort = await fetch(historyUrl);
 
-  const daten = await antwort.json();
+    // JSON-Antwort in ein JavaScript-Objekt umwandeln
+    const daten = await antwort.json();
 
-  console.log(daten);
+    // API-Daten zur Kontrolle ausgeben
+    console.log(daten);
 }
+
 // --------------------------------------------------
 // 2. Hintergrund über JavaScript setzen
 // --------------------------------------------------
@@ -360,7 +364,10 @@ function markiereFeiertageImKalender(feiertage) {
   );
 }
 
+// ------------------------------
+// 1.2.1
 
+ladeHistorischeEreignisse();
 // --------------------------------------------------
 // 14. Kontrolle in der Browser-Konsole
 // --------------------------------------------------

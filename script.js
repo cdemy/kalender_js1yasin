@@ -32,14 +32,49 @@ const historyUrl =
 
 async function ladeHistorischeEreignisse()
 {
-    // Daten vom API-Endpunkt abrufen
-    const antwort = await fetch(historyUrl);
+    try {
+        // Daten vom API-Endpunkt abrufen
+        const antwort = await fetch(historyUrl);
 
-    // JSON-Antwort in ein JavaScript-Objekt umwandeln
-    const daten = await antwort.json();
+        // Prüfen, ob die Anfrage erfolgreich war
+        if (!antwort.ok) {
+            throw new Error("API konnte nicht geladen werden");
+        }
 
-    // API-Daten zur Kontrolle ausgeben
-    console.log(daten);
+        // JSON-Antwort in JavaScript-Objekt umwandeln
+        const daten = await antwort.json();
+
+        // HTML-Elemente auswählen
+        const historyTitle =
+            document.getElementById("history-title");
+
+        const historyList =
+            document.getElementById("history-list");
+
+        // Überschrift dynamisch setzen
+        historyTitle.textContent =
+            `Historische Ereignisse am ${tag}. ${monatsname}`;
+
+        // Alte Inhalte entfernen
+        historyList.innerHTML = "";
+
+        // Nur fünf Ereignisse anzeigen
+        const ereignisse = daten.data.Events.slice(0, 5);
+
+        ereignisse.forEach((ereignis) => {
+            const li = document.createElement("li");
+
+            li.textContent =
+                `${ereignis.year}: ${ereignis.text}`;
+
+            historyList.appendChild(li);
+        });
+
+        console.log("History API:", daten);
+    }
+    catch (fehler) {
+        console.error("History API Fehler:", fehler);
+    }
 }
 
 // --------------------------------------------------

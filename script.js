@@ -47,6 +47,8 @@ async function ladeHistorischeEreignisse() {
     const antwort = await fetch(historyUrl);
     const daten = await antwort.json();
     console.log("History API:", daten);
+    const historyTitle = document.getElementById("history-title");
+    const historyList = document.getElementById("history-list");
     }
     catch (fehler) {
       console.error("History API Fehler:", fehler);

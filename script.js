@@ -1,9 +1,15 @@
-// --------------------------------------------------
 // 1. Aktuelles Datum erzeugen
-// --------------------------------------------------
-
 const heute = new Date();
 
+// Der Tag, auf den sich Infotext, Überschrift und API beziehen
+let ausgewaehltesDatum = new Date(heute);
+
+// Der Monat, der aktuell im Kalender angezeigt wird
+let angezeigterMonat = new Date(
+    heute.getFullYear(),
+    heute.getMonth(),
+    1
+);
 const tag = heute.getDate();
 const monatIndex = heute.getMonth();
 const jahr = heute.getFullYear();
@@ -26,51 +32,16 @@ function formatiereDatumISO(datum) {
 // 1.2 Historical Events API 
 //---------------------------------------------------
 
-const apiMonat = monatIndex + 1;
-const historyUrl =
-    `https://history.muffinlabs.com/date/${apiMonat}/${tag}`;
 
 async function ladeHistorischeEreignisse()
 {
-    try {
-        // Daten vom API-Endpunkt abrufen
-        const antwort = await fetch(historyUrl);
+   const tag = ausgewaehltesDatum.getDate();
 
-        // Prüfen, ob die Anfrage erfolgreich war
-        if (!antwort.ok) {
-            throw new Error("API konnte nicht geladen werden");
-        }
+   const apiMonat = ausgewaehltesDatum.getMonth() + 1;
 
-        // JSON-Antwort in JavaScript-Objekt umwandeln
-        const daten = await antwort.json();
+   const historyUrl =  `https://history.muffinlabs.com/date/${apiMonat}/${tag}`;
 
-        // HTML-Elemente auswählen
-        const historyTitle =
-            document.getElementById("history-title");
-
-        const historyList =
-            document.getElementById("history-list");
-
-        // Überschrift dynamisch setzen
-        historyTitle.textContent =
-            `Historische Ereignisse am ${tag}. ${monatsname}`;
-
-        // Alte Inhalte entfernen
-        historyList.innerHTML = "";
-
-        // Nur fünf Ereignisse anzeigen
-        const ereignisse = daten.data.Events.slice(0, 5);
-
-        ereignisse.forEach((ereignis) => {
-            const li = document.createElement("li");
-
-            li.textContent =
-                `${ereignis.year}: ${ereignis.text}`;
-
-            historyList.appendChild(li);
-        });
-
-        console.log("History API:", daten);
+   try {
     }
     catch (fehler) {
         console.error("History API Fehler:", fehler);

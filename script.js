@@ -33,20 +33,24 @@ function formatiereDatumISO(datum) {
 //---------------------------------------------------
 
 
-async function ladeHistorischeEreignisse()
-{
+async function ladeHistorischeEreignisse() {
    const tag = ausgewaehltesDatum.getDate();
 
    const apiMonat = ausgewaehltesDatum.getMonth() + 1;
 
-   const historyUrl =  `https://history.muffinlabs.com/date/${apiMonat}/${tag}`;
+   const monatIndex = ausgewaehltesDatum.getMonth();
+   const monatsname = monatsname[monatsIndex];
 
-   try {
+   const historyUrl =  `https://history.muffinlabs.com/date/${apiMonat}/${tag}`;
+   
+   try { 
+    const antwort = await fetch(historyUrl);
+    const daten = await antwort.json();
+    console.log("History API:", daten);
     }
     catch (fehler) {
-        console.error("History API Fehler:", fehler);
-    }
-}
+      console.error("History API Fehler:", fehler);
+} }
 
 // --------------------------------------------------
 // 2. Hintergrund über JavaScript setzen

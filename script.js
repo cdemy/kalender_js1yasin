@@ -11,7 +11,7 @@ let angezeigterMonat = new Date(
     1
 );
 const tag = heute.getDate();
-const monatIndex = heute.getMonth();
+const monatIndex = monatsnamen[monatIndex];
 const jahr = heute.getFullYear();
 
 // --------------------------------------------------
@@ -49,6 +49,7 @@ async function ladeHistorischeEreignisse() {
     console.log("History API:", daten);
     const historyTitle = document.getElementById("history-title");
     const historyList = document.getElementById("history-list");
+    historyTitle.textContent = `Historische Ereignisse am ${tag}. ${monatsname}`;
     }
     catch (fehler) {
       console.error("History API Fehler:", fehler);
